@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Blog in Angular</title>
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+</head>
+<body>
+	
+	<div class="container" ng-controller="blogController">
+		<div class="row">
+			<div class="col-xs-6 col-sm-6 col-md-4 col-lg-6">
+				
+			<form ng-submit="blogger()" method="POST" role="form">
+			<legend>Bloggin in <span class="text-primary">AngularJS</span></legend>
+	
+				<div class="form-group">
+				<label for="">Title</label>
+				
+				<input type="text" class="form-control" id="" placeholder="Input field" ng-model="postTitle" required="true">
+				<label for="">Body</label>
+				
+				<textarea name="" class="form-control" id="" cols="30" rows="10" ng-model="postBody" required="true"></textarea>
+		</div>
+	
+		
+	
+		<button type="submit" class="btn btn-primary" value="add">Submit</button>
+	</form>
+
+			</div>
+
+		<div class="col-xs-6 col-sm-6 col-md-4 col-lg-6" >
+				
+				<div ng-repeat="blog in blogs">
+					
+					<h1>{{blog.title}}</h1>
+					<h3>{{blog.body}}</h3>
+				</div>
+				
+		</div>
+
+
+
+		</div>
+
+
+
+	</div>
+		
+
+
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+	<script>
+
+		/**
+			*  Module
+			*
+			* Description
+			*/
+			angular.module('app', [])
+				.controller('blogController', ['$scope', function($scope){
+					$scope.blogs=[];
+
+					$scope.blogger = function(){
+						$scope.blogs.push({
+							title: $scope.postTitle, body: $scope.postBody
+						});
+						$scope.postTitle="";
+						$scope.postBody="";
+					}
+			}])	
+
+
+
+	</script>	
+
+</body>
+</html>
